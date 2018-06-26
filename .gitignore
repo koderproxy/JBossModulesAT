@@ -1,0 +1,16 @@
+# Files
+.classpath
+.project
+.iml
+.DS_Store
+nb-configuration.xml
+nb-*
+profiles.xml
+.war
+modules/testcases/**/src/main/java/*.java
+
+
+#dirs
+target
+.idea
+.settings

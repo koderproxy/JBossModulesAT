@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+     *  ΙΔΕΑ : THE JBOSS TESTSUITE TO DEVELOP TESTS AGAINST INFINITE NUMBER OF SOFTWARE PROJECT VERSIONS
+    -->
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>19</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-modules-additional-testsuite</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.2.Final</version>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>The testsuite to write your tests once and test them against any version of your software program.</description>
+    
+
+    <licenses>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1-standalone.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Panagiotis Sotiropoulos</name>
+            <email>psotirop@redhat.com</email>
+            <organization>Red Hat</organization>
+            <organizationUrl>http://www.redhat.com</organizationUrl>
+        </developer>
+    </developers>
+
+  
+
+    <modules>
+        <module>modules</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.eap.additional.testsuite</groupId>
+            <artifactId>eap-additional-testsuite-source-distribution</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.eap.additional.testsuite</groupId>
+            <artifactId>eap-additional-testsuite-annotations</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Main Apache Maven Repository</name>
+            <url>http://repo.maven.apache.org/maven2/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Main Apache Maven Repository</name>
+            <url>http://repo.maven.apache.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <profiles>
+        <profile>
+            <id>jboss.modules.master.testsuite</id>
+            <activation>
+                <property>
+                    <name>master</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <properties>
+		<serverDir>master</serverDir>
+	    </properties>
+        </profile>
+
+        <profile>
+            <id>jboss.modules.2.2.testsuite</id>
+            <activation>
+                <property>
+                    <name>2.2</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <properties>
+		<serverDir>2.2</serverDir>
+	    </properties>
+
+        </profile>
+
+        <profile>
+            <id>jboss.modules.2.1.testsuite</id>
+            <activation>
+                <property>
+                    <name>2.1</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <properties>
+		<serverDir>2.1</serverDir>
+	    </properties>
+
+        </profile>
+
+        <profile>
+            <id>jboss.modules.1.0.0.GA.testsuite</id>
+            <activation>
+                <property>
+                    <name>1.0.0.GA</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <properties>
+		<serverDir>1.0.0.GA</serverDir>
+	    </properties>
+
+        </profile>
+
+    </profiles>
+
+    <build>
+        <plugins>
+             <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-antrun-plugin</artifactId>
+	        <executions>
+	            <execution>
+	                <id>clear previous sources</id>
+	                <phase>process-test-resources</phase>
+	                <goals>
+	                    <goal>run</goal>
+	                </goals>
+	                <configuration>
+	                    <target name="clean" description="clean">
+				<delete includeEmptyDirs="true" failonerror="false">
+				    <fileset dir="${basedir}/modules/testcases" includes="**/${serverDir}/**/src/main/java/"/>
+				</delete>
+			    </target>
+	                </configuration>
+	            </execution>
+	        </executions>
+	    </plugin>
+
+            <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>exec-maven-plugin</artifactId>
+	        <version>1.1.1</version>
+	        <executions>
+	            <execution>
+	                <phase>test</phase>
+	                <goals>
+		            <goal>java</goal>
+	                </goals>
+	            </execution>
+	       </executions>
+               <configuration>
+		   <mainClass>org.jboss.eap.additional.testsuite.source.distribution.AdditionalTestsuiteDistributeSources</mainClass>
+		   <arguments>
+		       <argument>${basedir}</argument>
+		       <argument>${basedir}/modules/src/main/java</argument>
+                       <argument>${serverDir}</argument>
+                       <argument>${JBOSS_VERSION}</argument>
+                       <argument>versionOrder</argument>
+		   </arguments>
+	       </configuration>
+	    </plugin>
+
+       </plugins>
+   </build>
+
+</project>

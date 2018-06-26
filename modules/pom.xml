@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+     *  ΙΔΕΑ : THE JBOSS TESTSUITE TO DEVELOP TESTS AGAINST INFINITE NUMBER OF SOFTWARE PROJECT VERSIONS
+    -->
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-modules-additional-testsuite</artifactId>
+        <version>1.0.2.Final</version>
+    </parent>
+
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-modules-additional-testsuite-modules</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.2.Final</version>
+
+    <name>jboss-modules additional testsuite: jboss-modules additional testsuite modules</name>
+    
+    <properties>
+        <version.junit>4.11</version.junit>
+        <!-- Logging config -->
+        <testLogToFile>true</testLogToFile>
+    </properties>
+
+    <profiles>
+
+        <profile>
+            <id>jboss.modules.master.testsuite</id>
+            <activation>
+                <property>
+                    <name>master</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <modules>
+                <module>testcases/jdkAll/master</module>
+            </modules>
+
+        </profile>
+
+        <profile>
+            <id>jboss.modules.2.2.testsuite</id>
+            <activation>
+                <property>
+                    <name>2.2</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <modules>
+                <module>testcases/jdkAll/2.2</module>
+            </modules>
+
+        </profile>
+
+        <profile>
+            <id>jboss.modules.2.1.testsuite</id>
+            <activation>
+                <property>
+                    <name>2.1</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <modules>
+                <module>testcases/jdkAll/2.1</module>
+            </modules>
+
+        </profile>
+
+        <profile>
+            <id>jboss.modules.1.0.0.GA.testsuite</id>
+            <activation>
+                <property>
+                    <name>1.0.0.GA</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
+            <modules>
+                <module>testcases/jdkAll/1.0.0.GA</module>
+            </modules>
+
+        </profile>
+
+    </profiles>
+
+</project>
