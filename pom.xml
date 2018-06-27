@@ -18,7 +18,7 @@
     <groupId>org.jboss</groupId>
     <artifactId>jboss-modules-additional-testsuite</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2.Final</version>
+    <version>1.9.0.Final-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>The testsuite to write your tests once and test them against any version of your software program.</description>
@@ -34,10 +34,10 @@
 
     <developers>
         <developer>
-            <name>Panagiotis Sotiropoulos</name>
-            <email>psotirop@redhat.com</email>
-            <organization>Red Hat</organization>
-            <organizationUrl>http://www.redhat.com</organizationUrl>
+            <name>Prashant kumar </name>
+            <email>koderproxy4@gmail.com</email>
+            <organization>JBoss Developer</organization>
+            <organizationUrl>http://www.jboss.org/</organizationUrl>
         </developer>
     </developers>
 
