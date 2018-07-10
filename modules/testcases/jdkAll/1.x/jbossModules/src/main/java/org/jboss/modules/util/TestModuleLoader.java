@@ -16,12 +16,41 @@
  * limitations under the License.
  */
 
-package org.jboss.modules.test;
+package org.jboss.modules.util;
+
+import org.jboss.modules.DelegatingModuleLoader;
+import org.jboss.modules.Module;
+import org.jboss.modules.ModuleSpec;
+
+import java.util.HashMap;
+import java.util.Map;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
 /**
+ * Test module loader that allows for modules specs to be added at runtime and it will only load modules from the
+ * provided specs.
+ *
  * @author John E. Bailey
  */
-public class ClassB {
+public class TestModuleLoader extends DelegatingModuleLoader {
+
+    private final Map<String, ModuleSpec> moduleSpecs = new HashMap<>();
+
+    public TestModuleLoader() {
+        super(Module.getSystemModuleLoader(), NO_FINDERS);
+    }
+
+    @Override
+    protected ModuleSpec findModule(String name) {
+        return moduleSpecs.get(name);
+    }
+
+    public void addModuleSpec(final ModuleSpec moduleSpec) {
+        moduleSpecs.put(moduleSpec.getName(), moduleSpec);
+    }
+
+    public String toString() {
+        return "test@" + System.identityHashCode(this);
+    }
 }

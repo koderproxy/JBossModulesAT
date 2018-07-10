@@ -16,15 +16,22 @@
  * limitations under the License.
  */
 
-package org.jboss.modules.test;
-
-/**
- * ImportedClass -
- *
- * @author John Bailey
- */
+package org.jboss.modules.ref;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
-public class ImportedClass {
+/**
+ * @author <a href="mailto:david.lloyd@redhat.com">David M. Lloyd</a>
+ */
+public final class Thing {
+    private final String blah = "blah!";
+    private final int boo = 123;
+
+    public String getBlah() {
+        return blah;
+    }
+
+    public int getBoo() {
+        return boo;
+    }
 }

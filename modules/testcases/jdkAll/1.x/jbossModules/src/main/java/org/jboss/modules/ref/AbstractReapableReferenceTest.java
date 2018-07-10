@@ -16,15 +16,21 @@
  * limitations under the License.
  */
 
-package org.jboss.modules.test;
+package org.jboss.modules.ref;
 
-/**
- * ImportedClass -
- *
- * @author John Bailey
- */
+import org.jboss.modules.ref.util.Assert;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
-public class ImportedClass {
+/**
+ * Super class for all test cases that apply to reapable references.
+ *
+ * @author <a href="mailto:flavia.rainone@jboss.com">Flavia Rainone</a>
+ * @see Reapable
+ */
+public abstract class AbstractReapableReferenceTest extends AbstractReferenceTest {
+
+    final <T, A> void assertReference(Reference<T, A> reference, T referenceValue, A attachment, Reaper<T, A> reaper) {
+        Assert.assertReference(reference, referenceValue, attachment, getTestedReferenceType(), reaper);
+    }
 }

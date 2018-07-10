@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source.
- * Copyright 2014 Red Hat, Inc., and individual contributors
+ * Copyright 2018 Red Hat, Inc., and individual contributors
  * as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,15 +16,21 @@
  * limitations under the License.
  */
 
-package org.jboss.modules.test;
+package org.jboss.modules;
 
-/**
- * ImportedClass -
- *
- * @author John Bailey
- */
+import java.net.URL;
+import org.junit.Assert;
+import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
-public class ImportedClass {
+/**
+ */
+public class JDKModuleLoaderTest extends AbstractModuleTestCase {
+    @Test
+    public void testLoadModulesClassFile() throws ModuleLoadException {
+        final Module module = Module.getSystemModuleLoader().loadModule("org.jboss.modules");
+        final URL resource = module.getClassLoader().getResource("org/jboss/modules/Main.class");
+        Assert.assertNotNull("Main.class", resource);
+    }
 }
