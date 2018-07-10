@@ -25,7 +25,9 @@ import java.util.Collection;
 import org.jboss.modules.ref.Reference.Type;
 import org.jboss.modules.ref.util.TestReaper;
 import org.junit.Test;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
 /**
  * Test for {@link SoftReference}.
  *

@@ -21,7 +21,9 @@ package org.jboss.modules;
 import java.net.URL;
 import org.junit.Assert;
 import org.junit.Test;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
 /**
  */
 public class JDKModuleLoaderTest extends AbstractModuleTestCase {
