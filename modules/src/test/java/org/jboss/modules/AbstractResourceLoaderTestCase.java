@@ -37,7 +37,9 @@ import org.jboss.modules.filter.PathFilter;
 import org.jboss.modules.filter.PathFilters;
 import org.junit.Before;
 import org.junit.Test;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 
 /**
  * Abstract Test Case used as the base for all resource loader tests.

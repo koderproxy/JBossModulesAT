@@ -5,7 +5,9 @@ import java.net.URL;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * Created by bob on 4/21/17.
  */

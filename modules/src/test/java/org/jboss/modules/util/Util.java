@@ -27,7 +27,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * Utility class providing commonly used test utilities.
  *

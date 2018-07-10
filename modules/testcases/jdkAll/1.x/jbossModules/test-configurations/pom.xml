@@ -10,12 +10,12 @@
 
     <parent>
         <groupId>org.jboss</groupId>
-        <artifactId>jboss-threads-additional-testsuite-threadTestsuite</artifactId>
+        <artifactId>jboss-modules-additional-testsuite-threadTestsuite</artifactId>
         <version>1.0.2.Final</version>
     </parent>
 
-    <artifactId>jboss-threads-additional-testsuite-threadTestsuite-configuration</artifactId>
-    <name>jboss threads additional testsuite: threadTestsuite : configuration</name>
+    <artifactId>jboss-modules-additional-testsuite-threadTestsuite-configuration</artifactId>
+    <name>jboss modules additional testsuite: jbossModules : configuration</name>
         
     <build>
 
@@ -44,7 +44,7 @@
 		        <configuration>         
 		            <!-- Tests to execute. -->
 		            <includes>
-		                <include>org/jboss/threads/**/*TestCase.java</include>
+		                <include>org/jboss/modules/**/*TestCase.java</include>
 		            </includes> 
 		        </configuration>
 		    </execution>

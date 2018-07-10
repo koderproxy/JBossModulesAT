@@ -10,13 +10,13 @@
 
     <parent>
         <groupId>org.jboss</groupId>
-        <artifactId>jboss-threads-additional-testsuite-master</artifactId>
+        <artifactId>jboss-modules-additional-testsuite-master</artifactId>
         <version>1.0.2.Final</version>
     </parent>
 
-    <artifactId>jboss-threads-additional-testsuite-threadTestsuite</artifactId>
+    <artifactId>jboss-modules-additional-testsuite-threadTestsuite</artifactId>
     <packaging>pom</packaging>
-    <name>jboss threads additional testsuite: threadTestsuite</name>
+    <name>jboss modules additional testsuite: jbossModules</name>
 
             
     <modules>

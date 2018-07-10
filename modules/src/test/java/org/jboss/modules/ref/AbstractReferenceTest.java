@@ -26,7 +26,9 @@ import static org.junit.Assert.assertTrue;
 import org.jboss.modules.ref.Reference.Type;
 import org.jboss.modules.ref.util.Assert;
 import org.junit.Test;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * Super class for all reference test cases, contains a few tests for functionality common to all
  * references, and a reference assertion method.

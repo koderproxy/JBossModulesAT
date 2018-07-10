@@ -31,7 +31,9 @@ import org.junit.Test;
 
 import static org.jboss.modules.ResourceLoaderSpec.createResourceLoaderSpec;
 import static org.jboss.modules.util.TestResourceLoader.TestResourceLoaderBuilder;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * [MODULES-69] Allow for OSGi style Class Filtering
  *
