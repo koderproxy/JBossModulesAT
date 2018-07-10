@@ -10,17 +10,19 @@
 
     <parent>
         <groupId>org.jboss</groupId>
-        <artifactId>jboss-threads-additional-testsuite-modules</artifactId>
-        <version>1.0.2.Final</version>
+        <artifactId>jboss-modules-additional-testsuite-modules</artifactId>
+        <version>1.0.0.Final-SNAPSHOT</version>
         <relativePath>../../../pom.xml</relativePath>
     </parent>
 
     <groupId>org.jboss</groupId>
-    <artifactId>jboss-threads-additional-testsuite-master</artifactId>
+    <artifactId>jboss-modules-additional-testsuite-master</artifactId>
     <packaging>pom</packaging>
     <version>1.0.2.Final</version>
 
-    <name>jboss threads additional testsuite: additional testsuite for jboss threads</name>
+
+
+    <name>jboss modules additional testsuite: additional testsuite for jboss modules</name>
     
             
     <dependencies>
@@ -31,8 +33,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.threads</groupId>
-    	    <artifactId>jboss-threads</artifactId>
+            <groupId>org.jboss.modules</groupId>
+    	    <artifactId>jboss-modules</artifactId>
             <version>${JBOSS_VERSION}</version>
             <scope>provided</scope>
         </dependency>
@@ -72,7 +74,7 @@
     </build>
 
     <modules>
-        <module>threadTestsuite</module>
+        <module>jbossModules</module>
     </modules>
 
 

@@ -17,7 +17,7 @@
     <groupId>org.jboss</groupId>
     <artifactId>jboss-modules-additional-testsuite-modules</artifactId>
     <packaging>pom</packaging>
-    <version>1.9.0.Final-SNAPSHOT</version>
+    <version>1.0.0.Final-SNAPSHOT</version>
 
     <name>jboss-modules additional testsuite: jboss-modules additional testsuite modules</name>
     

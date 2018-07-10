@@ -10,12 +10,14 @@
 
     <parent>
         <groupId>org.jboss</groupId>
-        <artifactId>jboss-modules-additional-testsuite-threadTestsuite</artifactId>
-        <version>1.0.2.Final</version>
+        <artifactId>jboss-modules-additional-testsuite-modulesTestsuite</artifactId>
+        <version>1.0.0.Final-SNAPSHOT</version>
+
+
     </parent>
 
-    <artifactId>jboss-modules-additional-testsuite-threadTestsuite-configuration</artifactId>
-    <name>jboss modules additional testsuite: jbossModules : configuration</name>
+    <artifactId>jboss-modules-additional-testsuite-modulesTestsuite-configuration</artifactId>
+    <name>jboss modules additional testsuite: modulesTestsuite : configuration</name>
         
     <build>
 

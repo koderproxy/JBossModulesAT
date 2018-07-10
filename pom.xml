@@ -18,8 +18,8 @@
     <groupId>org.jboss</groupId>
     <artifactId>jboss-modules-additional-testsuite</artifactId>
     <packaging>pom</packaging>
-    <version>1.9.0.Final-SNAPSHOT</version>
-
+    <version>1.0.0.Final-SNAPSHOT</version>
+   
     <name>${project.groupId}:${project.artifactId}</name>
     <description>The testsuite to write your tests once and test them against any version of your software program.</description>
     

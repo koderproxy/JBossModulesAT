@@ -11,12 +11,14 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-modules-additional-testsuite-master</artifactId>
-        <version>1.0.2.Final</version>
+        <version>1.0.0.Final-SNAPSHOT</version>
+
+
     </parent>
 
-    <artifactId>jboss-modules-additional-testsuite-threadTestsuite</artifactId>
+    <artifactId>jboss-modules-additional-testsuite-modulesTestsuite</artifactId>
     <packaging>pom</packaging>
-    <name>jboss modules additional testsuite: jbossModules</name>
+    <name>jboss modules additional testsuite: modulesTestsuite</name>
 
             
     <modules>
