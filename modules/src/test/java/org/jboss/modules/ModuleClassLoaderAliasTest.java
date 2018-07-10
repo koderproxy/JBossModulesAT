@@ -13,9 +13,7 @@ import java.nio.charset.Charset;
 
 import org.jboss.modules.util.Util;
 import org.junit.Test;
-import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * Tests the basic functionality of alias modules.
  *

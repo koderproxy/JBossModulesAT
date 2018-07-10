@@ -25,9 +25,7 @@ import java.io.File;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * Test to verify the functionality of the LocalModuleLoader.
  *

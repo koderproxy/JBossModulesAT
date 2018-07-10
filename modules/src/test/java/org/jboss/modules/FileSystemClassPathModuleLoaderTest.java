@@ -25,9 +25,7 @@ import org.jboss.modules.util.Util;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java");
 /**
  * @author <a href="mailto:david.lloyd@redhat.com">David M. Lloyd</a>
  */

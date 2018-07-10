@@ -178,7 +178,7 @@
 		   <mainClass>org.jboss.eap.additional.testsuite.source.distribution.AdditionalTestsuiteDistributeSources</mainClass>
 		   <arguments>
 		       <argument>${basedir}</argument>
-		       <argument>${basedir}/modules/src/main/java</argument>
+		       <argument>${basedir}/modules/src/test/java</argument>
                        <argument>${serverDir}</argument>
                        <argument>${JBOSS_VERSION}</argument>
                        <argument>versionOrder</argument>
