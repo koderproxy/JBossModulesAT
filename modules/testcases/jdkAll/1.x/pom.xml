@@ -18,7 +18,7 @@
     <groupId>org.jboss</groupId>
     <artifactId>jboss-modules-additional-testsuite-master</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2.Final</version>
+    <version>1.0.0.Final-SNAPSHOT</version>
 
 
 
