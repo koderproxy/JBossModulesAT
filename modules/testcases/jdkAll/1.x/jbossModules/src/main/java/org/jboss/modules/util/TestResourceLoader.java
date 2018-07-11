@@ -130,7 +130,7 @@ public class TestResourceLoader extends AbstractResourceLoader {
     public Collection<String> getPaths() {
         return paths;
     }
-     @Override
+    @Override
     public void close() {}
 
     private String getPathFromResourceName(final String resourcePath) {
