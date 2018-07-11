@@ -67,11 +67,11 @@ public class ClassDefinerTest extends AbstractModuleTestCase {
             public Collection<String> getPaths() {
                 return Collections.singletonList("org/module/foo");
             }
+             @Override
+    public void close() {}
         }));
         moduleLoader.addModuleSpec(builder.create());
     }
-    @Override
-     public void close() {}
 
     @Test
     public void testDefineClass() throws ModuleLoadException, IOException, ClassNotFoundException {
