@@ -70,6 +70,8 @@ public class ClassDefinerTest extends AbstractModuleTestCase {
         }));
         moduleLoader.addModuleSpec(builder.create());
     }
+    @Override
+     public void close() {}
 
     @Test
     public void testDefineClass() throws ModuleLoadException, IOException, ClassNotFoundException {

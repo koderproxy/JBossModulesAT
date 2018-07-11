@@ -48,7 +48,7 @@ import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
  *
  * @author John E. Bailey
  */
-public class TestResourceLoader extends AbstractResourceLoader {
+    public class TestResourceLoader extends AbstractResourceLoader {
     private final Map<String, ClassSpec> classSpecs = new HashMap<String, ClassSpec>();
     private final Map<String, Resource> resources = new HashMap<String, Resource>();
     private final Set<String> paths = new HashSet<String>();
@@ -57,7 +57,8 @@ public class TestResourceLoader extends AbstractResourceLoader {
     public String getRootName() {
         return "test";
     }
-
+    @Override
+    public void close() {}
     @Override
     public ClassSpec getClassSpec(final String fileName) throws IOException {
         final Map<String, ClassSpec> classSpecs = this.classSpecs;
