@@ -11,4 +11,4 @@ All code can be found at https://github.com/koderproxy/JBossModulesAT
 
 ## License
 
-All code distributed under [ASL 2.0](LICENSE.txt) and [XPP3](XPP3-LICENSE.txt).
+All code distributed under [ASL 2.0](LICENSE.txt),[XPP3](XPP3-LICENSE.txt) and [GNU Lesser General Public License Version 2.1](GNU Lesser General Public License Version 2.1.txt)
