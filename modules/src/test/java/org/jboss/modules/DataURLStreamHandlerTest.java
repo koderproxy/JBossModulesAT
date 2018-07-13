@@ -30,8 +30,9 @@ import java.nio.charset.StandardCharsets;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
+
 /**
  */
 public class DataURLStreamHandlerTest {
