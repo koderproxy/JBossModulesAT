@@ -21,7 +21,7 @@ package org.jboss.modules.ref;
 import org.jboss.modules.ref.util.Assert;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
 /**
  * Super class for all test cases that apply to reapable references.
  *

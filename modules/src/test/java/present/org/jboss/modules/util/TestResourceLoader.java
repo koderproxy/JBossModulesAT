@@ -41,7 +41,7 @@ import static org.junit.Assert.assertTrue;
 import static org.jboss.modules.util.Util.getClassBytes;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
 /**
  * A test resource loader that simple retrieves resources frm maps.  This allows tests to build
  * arbitrary modules with arbitrary content without having to have the module on disk.
