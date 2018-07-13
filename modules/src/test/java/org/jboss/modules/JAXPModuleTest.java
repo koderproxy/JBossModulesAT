@@ -130,7 +130,7 @@ import org.xml.sax.XMLReader;
 import sun.misc.Unsafe;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
 /**
  * Tests JAXP, including all of the possible ways to trigger redirection
