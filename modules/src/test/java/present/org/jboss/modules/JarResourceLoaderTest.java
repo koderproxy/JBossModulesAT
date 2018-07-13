@@ -31,7 +31,7 @@ import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
 /**
  * Test the functionality of the JarResourceLoader.
  *
