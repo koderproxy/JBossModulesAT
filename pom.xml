@@ -183,6 +183,11 @@
                        <argument>${serverDir2}</argument>
                        <argument>${JBOSS_VERSION}</argument>
                        <argument>versionOrder</argument>
+                       <argument></argument>
+                       <argument></argument>
+                       <argument></argument>
+                       <argument></argument>
+
                       
 		   </arguments>
 	       </configuration>
