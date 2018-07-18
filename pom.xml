@@ -154,7 +154,7 @@
 	                <configuration>
 	                    <target name="clean" description="clean">
 				<delete includeEmptyDirs="true" failonerror="false">
-				    <fileset dir="${basedir}/modules/testcases" includes="**/${serverDir}/**/src/main/java/"/>
+				    <fileset dir="${basedir}/modules/testcases" includes="**/${serverDir2}/**/src/main/java/"/>
 				</delete>
 			    </target>
 	                </configuration>
@@ -177,11 +177,13 @@
                <configuration>
 		   <mainClass>org.jboss.eap.additional.testsuite.source.distribution.AdditionalTestsuiteDistributeSources</mainClass>
 		   <arguments>
-		       <argument>${basedir}</argument>
+		       
+                      <argument>${basedir}</argument>
 		       <argument>${basedir}/modules/src/test/java</argument>
-                       <argument>${serverDir}</argument>
+                       <argument>${serverDir2}</argument>
                        <argument>${JBOSS_VERSION}</argument>
                        <argument>versionOrder</argument>
+                      
 		   </arguments>
 	       </configuration>
 	    </plugin>
