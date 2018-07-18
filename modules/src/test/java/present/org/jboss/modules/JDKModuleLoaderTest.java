@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.2")
 /**
  */
 public class JDKModuleLoaderTest extends AbstractModuleTestCase {
