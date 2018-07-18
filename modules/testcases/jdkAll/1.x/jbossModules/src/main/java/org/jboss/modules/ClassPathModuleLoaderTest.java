@@ -33,6 +33,7 @@ import static org.junit.Assert.assertNotNull;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+
 /**
  * Test to verify the functionality of the ClassPathModuleLoader.
  *
@@ -55,7 +56,7 @@ public class ClassPathModuleLoaderTest extends AbstractModuleTestCase {
         final String[] classPath = { item };
         final String deps = "test.test,test.with-deps";
         final String mainClass = "org.jboss.modules.test.TestClass";
-        final ModuleLoader moduleLoader = new DelegatingModuleLoader(Module.getSystemModuleLoader(), new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
+        final ModuleLoader moduleLoader = new ModuleLoader(new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
         final Module module = moduleLoader.loadModule(item);
         module.getClassLoader();
         assertNotNull(module);
@@ -73,7 +74,7 @@ public class ClassPathModuleLoaderTest extends AbstractModuleTestCase {
         final String[] classPath = { item };
         final String deps = "test.service";
         final String mainClass = null;
-        final ModuleLoader moduleLoader = new DelegatingModuleLoader(Module.getSystemModuleLoader(), new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
+        final ModuleLoader moduleLoader = new ModuleLoader(new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
         final Module module = moduleLoader.loadModule(item);
         final ClassLoader classLoader = module.getClassLoader();
         final URL url = classLoader.getResource("META-INF/services/dummy");
@@ -91,7 +92,7 @@ public class ClassPathModuleLoaderTest extends AbstractModuleTestCase {
         final String[] classPath = { item };
         final String deps = "test.jaxrs";
         final String mainClass = null;
-        final ModuleLoader moduleLoader = new DelegatingModuleLoader(Module.getSystemModuleLoader(), new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
+        final ModuleLoader moduleLoader = new ModuleLoader(new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
         final Module module = moduleLoader.loadModule(item);
         final ClassLoader classLoader = module.getClassLoader();
         final Enumeration<URL> services = classLoader.getResources("META-INF/services/javax.ws.rs.ext.Providers");

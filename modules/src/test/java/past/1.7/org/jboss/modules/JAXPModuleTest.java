@@ -131,12 +131,12 @@ import org.xml.sax.XMLReader;
 import sun.misc.Unsafe;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
 /**
  * Tests JAXP, including all of the possible ways to trigger redirection
  *
  * @author Jason T. Greene
  */
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
 @SuppressWarnings("deprecation")
 public class JAXPModuleTest extends AbstractModuleTestCase {
 

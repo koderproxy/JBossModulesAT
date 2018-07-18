@@ -18,6 +18,7 @@
 
 package org.jboss.modules;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -25,6 +26,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -57,7 +60,7 @@ public class ConditionalResourceTest extends AbstractModuleTestCase {
         final String[] classPath = { item };
         final String deps = "test.conditional-active,test.conditional-not-active";
         final String mainClass = null;
-        final ModuleLoader moduleLoader = new DelegatingModuleLoader(Module.getSystemModuleLoader(), new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
+        final ModuleLoader moduleLoader = new ModuleLoader(new ClassPathModuleFinder(new LocalModuleLoader(new File[] { repoRoot }), classPath, deps, mainClass));
         final Module module = moduleLoader.loadModule(item);
         final ClassLoader classLoader = module.getClassLoader();
         final URL active = classLoader.getResource("active.txt");

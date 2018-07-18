@@ -25,6 +25,7 @@ import org.jboss.modules.ModuleSpec;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
 /**
  * Test module loader that allows for modules specs to be added at runtime and it will only load modules from the
