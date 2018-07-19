@@ -11,7 +11,8 @@ import org.jboss.modules.util.TestModuleLoader;
 import org.jboss.modules.util.TestResourceLoader;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9") 
+
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
 /**
  * Verifies the functionality of alias modules in unload/reload scenarios.
  *
@@ -32,12 +33,6 @@ public class ModuleClassLoaderAliasReloadTest extends AbstractModuleTestCase {
 
         private CloseAwareResourceLoader(final ResourceLoader delegate) {
             this.delegate = delegate;
-        }
-
-        @Override
-        public String getRootName() {
-            if (closed) throw new IllegalStateException();
-            return delegate.getRootName();
         }
 
         @Override
