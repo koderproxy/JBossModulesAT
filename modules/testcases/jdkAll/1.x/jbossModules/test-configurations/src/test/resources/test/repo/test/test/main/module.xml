@@ -17,13 +17,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<module xmlns="urn:jboss:module:1.0" name="test.service">
-    <resources>
-        <resource-root path="."/>
-       <!-- @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/test-configurations/src/test/resources/test/repo/test/test/main") -->
-    </resources>
-
-    <dependencies>
-    </dependencies>
+<module xmlns="urn:jboss:module:1.8" name="test.service">
+    <provides>
+        <service name="dummy">
+            <with-class name="dummy"/>
+        </service>
+    </provides>
 </module>
