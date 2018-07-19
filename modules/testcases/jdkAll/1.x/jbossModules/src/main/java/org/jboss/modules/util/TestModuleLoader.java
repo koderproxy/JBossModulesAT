@@ -18,34 +18,32 @@
 
 package org.jboss.modules.util;
 
+import org.jboss.modules.DelegatingModuleLoader;
 import org.jboss.modules.Module;
-import org.jboss.modules.ModuleLoadException;
-import org.jboss.modules.ModuleLoader;
 import org.jboss.modules.ModuleSpec;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
+
+ @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
 /**
  * Test module loader that allows for modules specs to be added at runtime and it will only load modules from the
  * provided specs.
  *
  * @author John E. Bailey
  */
-public class TestModuleLoader extends ModuleLoader {
+public class TestModuleLoader extends DelegatingModuleLoader {
 
     private final Map<String, ModuleSpec> moduleSpecs = new HashMap<>();
 
-    protected Module preloadModule(final String name) throws ModuleLoadException {
-        return super.preloadModule(name);
+    public TestModuleLoader() {
+        super(Module.getSystemModuleLoader(), NO_FINDERS);
     }
 
     @Override
-    protected ModuleSpec findModule(String name) throws ModuleLoadException {
-        final ModuleSpec moduleSpec = moduleSpecs.get(name);
-        if(moduleSpec == null) throw new ModuleLoadException("No module spec found for module " + name);
-        return moduleSpec;
+    protected ModuleSpec findModule(String name) {
+        return moduleSpecs.get(name);
     }
 
     public void addModuleSpec(final ModuleSpec moduleSpec) {

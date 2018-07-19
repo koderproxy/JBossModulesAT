@@ -8,6 +8,8 @@ nb-*
 profiles.xml
 .war
 modules/testcases/**/src/main/java/*.java
+modules/testcases/jdkAll/1.x
+modules/testcases/**/*.java
 
 
 #dirs

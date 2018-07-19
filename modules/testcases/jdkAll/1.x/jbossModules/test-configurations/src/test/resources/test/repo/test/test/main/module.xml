@@ -17,10 +17,13 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<module xmlns="urn:jboss:module:1.8" name="test.service">
-    <provides>
-        <service name="dummy">
-            <with-class name="dummy"/>
-        </service>
-    </provides>
+<module xmlns="urn:jboss:module:1.1" name="test.test">
+    <properties>
+        <property name="test.prop.1"/>
+        <property name="test.prop.2" value="propertyValue"/>
+    </properties>
+
+    <resources/>
+
+    <dependencies/>
 </module>
