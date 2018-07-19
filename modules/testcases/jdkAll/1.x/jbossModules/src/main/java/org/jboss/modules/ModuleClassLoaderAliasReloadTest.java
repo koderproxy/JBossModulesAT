@@ -11,8 +11,7 @@ import org.jboss.modules.util.TestModuleLoader;
 import org.jboss.modules.util.TestResourceLoader;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
-
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9") 
 /**
  * Verifies the functionality of alias modules in unload/reload scenarios.
  *

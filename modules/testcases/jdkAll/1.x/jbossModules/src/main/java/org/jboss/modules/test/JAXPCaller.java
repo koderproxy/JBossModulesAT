@@ -46,7 +46,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
 public class JAXPCaller {
 
     public Document document() {
@@ -54,7 +54,7 @@ public class JAXPCaller {
         try {
             return factory.newDocumentBuilder().newDocument();
         } catch (ParserConfigurationException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -66,7 +66,7 @@ public class JAXPCaller {
         try {
             return DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -78,7 +78,7 @@ public class JAXPCaller {
         try {
             return SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema();
         } catch (SAXException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -86,7 +86,7 @@ public class JAXPCaller {
         try {
             return XMLReaderFactory.createXMLReader();
         } catch (SAXException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -98,7 +98,7 @@ public class JAXPCaller {
         try {
             return SAXParserFactory.newInstance().newSAXParser();
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -110,7 +110,7 @@ public class JAXPCaller {
         try {
             return XPathFactory.newInstance().newXPath();
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -122,7 +122,7 @@ public class JAXPCaller {
         try {
             return transformerFactory().newTransformer();
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -130,7 +130,7 @@ public class JAXPCaller {
         try {
             return ((SAXTransformerFactory)transformerFactory()).newTransformerHandler();
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 
@@ -166,7 +166,7 @@ public class JAXPCaller {
         try {
             return DatatypeFactory.newInstance();
         } catch (DatatypeConfigurationException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException();
         }
     }
 

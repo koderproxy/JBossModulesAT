@@ -131,7 +131,7 @@
             </activation>
 
             <properties>
-		<serverDir>1.x</serverDir>
+		<serverDir2>1.x</serverDir2>
 	    </properties>
         </profile>
 

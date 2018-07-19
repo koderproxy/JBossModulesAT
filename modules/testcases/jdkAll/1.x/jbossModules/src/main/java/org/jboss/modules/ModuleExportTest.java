@@ -36,7 +36,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9") 
+
 /**
  * Test to verify the module export dependencies and imports are created correctly.  Each module should have an entry
  * directly to the module that has an exported path.
