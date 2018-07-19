@@ -18,13 +18,12 @@
   ~ limitations under the License.
   -->
 
-<module xmlns="urn:jboss:module:1.1" name="test.test">
-    <properties>
-        <property name="test.prop.1"/>
-        <property name="test.prop.2" value="propertyValue"/>
-    </properties>
+<module xmlns="urn:jboss:module:1.0" name="test.service">
+    <resources>
+        <resource-root path="."/>
+       <!-- @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/test-configurations/src/test/resources/test/repo/test/test/main") -->
+    </resources>
 
-    <resources/>
-
-    <dependencies/>
+    <dependencies>
+    </dependencies>
 </module>
