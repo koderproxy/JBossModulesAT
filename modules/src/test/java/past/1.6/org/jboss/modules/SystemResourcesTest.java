@@ -27,9 +27,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.7.0*1.7.9") 
- 
-
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Test System pkgs resources
  *
@@ -39,7 +37,7 @@ public class SystemResourcesTest  {
     private static final ModuleIdentifier MODULE_A = ModuleIdentifier.fromString("A");
 
     static {
-        System.setProperty("jboss.modules.system.pkgs", "javax.naming");
+        System.setProperty("jboss.modules.system.pkgs", "javax.activation");
     }
 
 
@@ -54,7 +52,7 @@ public class SystemResourcesTest  {
         Module module = moduleLoader.loadModule(MODULE_A);
         ClassLoader cl = module.getClassLoader();
 
-        Enumeration<URL> resources = cl.getResources("javax/naming/Context.class");
+        Enumeration<URL> resources = cl.getResources("javax/activation/DataHandler.class");
         Assert.assertTrue(resources.hasMoreElements());
 
         resources = cl.getResources("javax/sql/RowSet.class");
@@ -63,4 +61,4 @@ public class SystemResourcesTest  {
         resources = cl.getResources("org/jboss/");
         Assert.assertFalse(resources.hasMoreElements());
     }
-} 
+}

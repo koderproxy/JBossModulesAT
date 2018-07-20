@@ -18,14 +18,16 @@
 
 package org.jboss.modules;
 
-import static org.jboss.modules.PathUtils.*;
+import static org.jboss.modules.PathUtils.isChild;
+import static org.jboss.modules.PathUtils.isDirectChild;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.7.0") 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Test to verify the PathUtils functionality.
  *
@@ -47,26 +49,4 @@ public class PathUtilsTest {
         assertFalse(isChild("app.war", "app.war/"));
     }
 
-    @Test
-    public void testBasicNames() {
-        assertEquals("basic/main", basicModuleNameToPath("basic"));
-        assertEquals("a/b/main", basicModuleNameToPath("a.b"));
-        assertEquals("a/b/c", basicModuleNameToPath("a.b:c"));
-        assertEquals("a/b/c.d", basicModuleNameToPath("a.b:c.d"));
-        assertEquals("a/b/c:d", basicModuleNameToPath("a.b:c:d"));
-        assertEquals("a/b/c.d", basicModuleNameToPath("a.b:c/d"));
-        assertEquals("a.b/c.d", basicModuleNameToPath("a/b:c.d"));
-        assertEquals("a:b/c.d", basicModuleNameToPath("a\\:b:c.d"));
-
-        assertNull(basicModuleNameToPath("."));
-        assertNull(basicModuleNameToPath(".."));
-        assertNull(basicModuleNameToPath("./"));
-        assertNull(basicModuleNameToPath("/foo"));
-        assertNull(basicModuleNameToPath(".foo"));
-        assertNull(basicModuleNameToPath("foo/."));
-        assertNull(basicModuleNameToPath("foo/"));
-        assertNull(basicModuleNameToPath("foo:"));
-        assertNull(basicModuleNameToPath("foo//bar"));
-        assertNull(basicModuleNameToPath("foo..bar"));
-    }
 }
