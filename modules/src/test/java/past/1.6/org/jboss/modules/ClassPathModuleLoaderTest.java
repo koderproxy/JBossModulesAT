@@ -30,6 +30,7 @@ import java.util.Enumeration;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
+
 @EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Test to verify the functionality of the ClassPathModuleLoader.
