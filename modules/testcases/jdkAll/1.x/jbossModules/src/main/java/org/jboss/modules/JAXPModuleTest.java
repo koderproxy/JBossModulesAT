@@ -131,7 +131,7 @@ import org.xml.sax.XMLFilter;
 import org.xml.sax.XMLReader;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.1*1.6.9") 
 /**
  * Tests JAXP, including all of the possible ways to trigger redirection
  *

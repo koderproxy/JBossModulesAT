@@ -46,7 +46,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.5.0*1.7.9")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.1*1.7.9")
 public class JAXPCaller {
 
     public Document document() {
