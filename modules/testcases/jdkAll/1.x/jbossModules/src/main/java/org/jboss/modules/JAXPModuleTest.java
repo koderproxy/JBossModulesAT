@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Calendar;
@@ -105,6 +106,7 @@ import __redirected.__XMLEventFactory;
 import __redirected.__XMLInputFactory;
 import __redirected.__XMLOutputFactory;
 
+import org.jboss.modules.filter.PathFilter;
 import org.jboss.modules.filter.PathFilters;
 import org.jboss.modules.test.JAXPCaller;
 import org.jboss.modules.util.TestModuleLoader;
@@ -127,11 +129,9 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLFilter;
 import org.xml.sax.XMLReader;
-import sun.misc.Unsafe;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Tests JAXP, including all of the possible ways to trigger redirection
  *
@@ -143,10 +143,14 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
     private static final ModuleIdentifier FAKE_JAXP = ModuleIdentifier.fromString("fake-jaxp");
 
     private TestModuleLoader moduleLoader;
+    private PathFilter jdkApiFilter;
 
 
     @Before
     public void setupModuleLoader() throws Exception {
+        jdkApiFilter = PathFilters.any(PathFilters.match("javax/**"),
+                       PathFilters.match("org/w3c/**"),
+                       PathFilters.match("org/xml/**"));
         moduleLoader = new TestModuleLoader();
 
         ModuleSpec.Builder moduleWithContentBuilder = ModuleSpec.build(ModuleIdentifier.fromString("test-jaxp"));
@@ -184,7 +188,7 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
                         .addResources(getResource("test/modulecontentloader/jaxp"))
                         .create()
         ));
-        moduleWithContentBuilder.addDependency(DependencySpec.createModuleDependencySpec("java.xml"));
+        moduleWithContentBuilder.addDependency(DependencySpec.createSystemDependencySpec(jdkApiFilter, PathFilters.rejectAll(), JDKPaths.JDK));
         moduleWithContentBuilder.addDependency(DependencySpec.createLocalDependencySpec());
         moduleLoader.addModuleSpec(moduleWithContentBuilder.create());
 
@@ -194,13 +198,8 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
                 .addClass(JAXPCaller.class)
                 .create()
         ));
-        moduleWithContentBuilder.addDependency(DependencySpec.createModuleDependencySpec("java.xml"));
-        moduleWithContentBuilder.addDependency(new ModuleDependencySpecBuilder()
-            .setImportFilter(PathFilters.acceptAll())
-            .setModuleLoader(moduleLoader)
-            .setName(FAKE_JAXP.toString())
-            .setOptional(false)
-            .build());
+        moduleWithContentBuilder.addDependency(DependencySpec.createSystemDependencySpec(jdkApiFilter, PathFilters.rejectAll(), JDKPaths.JDK));
+        moduleWithContentBuilder.addDependency(DependencySpec.createModuleDependencySpec(PathFilters.acceptAll(), PathFilters.rejectAll(), moduleLoader, FAKE_JAXP, false));
         moduleWithContentBuilder.addDependency(DependencySpec.createLocalDependencySpec());
         moduleLoader.addModuleSpec(moduleWithContentBuilder.create());
     }
@@ -223,17 +222,17 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
         ClassLoader old = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(cl);
-            checkDom(clazz, false, true);
-            checkSax(clazz, false, true);
-            checkTransformer(clazz, false, true);
-            checkSAXTransformer(clazz, false, true);
-            checkXPath(clazz, false, true);
-            checkXmlEvent(clazz, false, true);
-            checkXmlInput(clazz, false, true);
-            checkXmlOutput(clazz, false, true);
-            checkDatatype(clazz, false, true);
-            checkSchema(clazz, false, true);
-            checkXMLReader(clazz, false, true);
+            checkDom(clazz, true);
+            checkSax(clazz, true);
+            checkTransformer(clazz, true);
+            checkSAXTransformer(clazz, true);
+            checkXPath(clazz, true);
+            checkXmlEvent(clazz, true);
+            checkXmlInput(clazz, true);
+            checkXmlOutput(clazz, true);
+            checkDatatype(clazz, true);
+            checkSchema(clazz, true);
+            checkXMLReader(clazz, true);
         } finally {
             Thread.currentThread().setContextClassLoader(old);
             __JAXPRedirected.restorePlatformFactory();
@@ -247,18 +246,17 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
         ClassLoader old = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(cl);
-            Assert.assertTrue(JDKPaths.JDK.contains("javax/xml/parsers"));
-            checkDom(clazz, true, true);
-            checkSax(clazz, true, true);
-            checkTransformer(clazz, true, true);
-            checkSAXTransformer(clazz, true, true);
-            checkXPath(clazz, true, true);
-            checkXmlEvent(clazz, true, true);
-            checkXmlInput(clazz, true, true);
-            checkXmlOutput(clazz, true, true);
-            checkDatatype(clazz, true, true);
-            checkSchema(clazz, true, true);
-            checkXMLReader(clazz, true, true);
+            checkDom(clazz, true);
+            checkSax(clazz, true);
+            checkTransformer(clazz, true);
+            checkSAXTransformer(clazz, true);
+            checkXPath(clazz, true);
+            checkXmlEvent(clazz, true);
+            checkXmlInput(clazz, true);
+            checkXmlOutput(clazz, true);
+            checkDatatype(clazz, true);
+            checkSchema(clazz, true);
+            checkXMLReader(clazz, true);
         } finally {
             Thread.currentThread().setContextClassLoader(old);
         }
@@ -271,14 +269,13 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
      */
     @Test
     public void testMain() throws Throwable {
-        final java.lang.reflect.Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-        unsafeField.setAccessible(true);
-        Unsafe unsafe = (Unsafe) unsafeField.get(null);
         java.lang.reflect.Field field = DefaultBootModuleLoaderHolder.class.getDeclaredField("INSTANCE");
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+        field.setAccessible(true);
         ModuleLoader oldMl = (ModuleLoader) field.get(null);
-        final Object fieldBase = unsafe.staticFieldBase(field);
-        final long fieldOffset = unsafe.staticFieldOffset(field);
-        unsafe.putObjectVolatile(fieldBase, fieldOffset, moduleLoader);
+        field.set(null, moduleLoader);
 
         Main.main(new String[] {"-jaxpmodule", "fake-jaxp", "test-jaxp"});
         ModuleClassLoader cl = moduleLoader.loadModule(ModuleIdentifier.fromString("test-jaxp")).getClassLoader();
@@ -286,34 +283,31 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
         ClassLoader old = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(cl);
-            checkDom(clazz, false, true);
-            checkSax(clazz, false, true);
-            checkTransformer(clazz, false, true);
-            checkSAXTransformer(clazz, false, true);
-            checkXmlEvent(clazz, false, true);
-            checkXPath(clazz, false, true);
-            checkXmlInput(clazz, false, true);
-            checkXmlOutput(clazz, false, true);
-            checkDatatype(clazz, false, true);
-            checkSchema(clazz, false, true);
-            checkXMLReader(clazz, false, true);
+            checkDom(clazz, true);
+            checkSax(clazz, true);
+            checkTransformer(clazz, true);
+            checkSAXTransformer(clazz, true);
+            checkXmlEvent(clazz, true);
+            checkXPath(clazz, true);
+            checkXmlInput(clazz, true);
+            checkXmlOutput(clazz, true);
+            checkDatatype(clazz, true);
+            checkSchema(clazz, true);
+            checkXMLReader(clazz, true);
         } finally {
-            unsafe.putObjectVolatile(fieldBase, fieldOffset, oldMl);
+            field.set(null, oldMl);
             Thread.currentThread().setContextClassLoader(old);
             __JAXPRedirected.restorePlatformFactory();
         }
     }
 
-    public void checkDom(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkDom(Class<?> clazz, boolean fake) throws Exception {
         DocumentBuilder builder = invokeMethod(clazz.newInstance(), "documentBuilder");
         DocumentBuilderFactory factory = invokeMethod(clazz.newInstance(), "documentFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeDocumentBuilderFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__DocumentBuilderFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__DocumentBuilderFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeDocumentBuilder.class.getName(), builder.getClass().getName());
         } else {
             // Double check that it works
@@ -323,72 +317,63 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
         }
     }
 
-    public void checkSax(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkSax(Class<?> clazz, boolean fake) throws Exception {
         SAXParser parser = invokeMethod(clazz.newInstance(), "saxParser");
         SAXParserFactory factory = invokeMethod(clazz.newInstance(), "saxParserFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeSAXParserFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__SAXParserFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__SAXParserFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeSAXParser.class.getName(), parser.getClass().getName());
         } else {
             Assert.assertSame(SAXParserFactory.newInstance().newSAXParser().getClass(), parser.getClass());
         }
     }
 
-    public void checkTransformer(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkTransformer(Class<?> clazz, boolean fake) throws Exception {
         Transformer parser = invokeMethod(clazz.newInstance(), "transformer");
         TransformerFactory factory = invokeMethod(clazz.newInstance(), "transformerFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeTransformerFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__TransformerFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__TransformerFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeTransformer.class.getName(), parser.getClass().getName());
         } else {
             Assert.assertSame(TransformerFactory.newInstance().newTransformer().getClass(), parser.getClass());
         }
     }
 
-    public void checkXPath(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkXPath(Class<?> clazz, boolean fake) throws Exception {
         XPath parser = invokeMethod(clazz.newInstance(), "xpath");
         XPathFactory factory = invokeMethod(clazz.newInstance(), "xpathFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeXPathFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__XPathFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__XPathFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeXPath.class.getName(), parser.getClass().getName());
         } else {
             Assert.assertSame(XPathFactory.newInstance().newXPath().getClass(), parser.getClass());
         }
     }
 
-    public void checkSchema(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkSchema(Class<?> clazz, boolean fake) throws Exception {
         Schema parser = invokeMethod(clazz.newInstance(), "schema");
         SchemaFactory factory = invokeMethod(clazz.newInstance(), "schemaFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeSchemaFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__SchemaFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__SchemaFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeSchema.class.getName(), parser.getClass().getName());
         } else {
             Assert.assertSame(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema().getClass(), parser.getClass());
         }
     }
 
-    public void checkXMLReader(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkXMLReader(Class<?> clazz, boolean fake) throws Exception {
         XMLReader parser = invokeMethod(clazz.newInstance(), "xmlReader");
+
+        Assert.assertEquals(__XMLReaderFactory.class.getName(), parser.getClass().getName());
+
 
         Object test = null;
         try {
@@ -396,93 +381,75 @@ public class JAXPModuleTest extends AbstractModuleTestCase {
         } catch (Exception ignore) {
         }
 
-        if (! fakeFactory) {
-            Assert.assertEquals(__XMLReaderFactory.class.getName(), parser.getClass().getName());
-        }
-        if (fakeImpl) {
+        if (fake) {
             Assert.assertEquals("fake-fake-fake", test);
         } else {
-            Assert.assertNotEquals("fake-fake-fake", test);
+            Assert.assertFalse("fake-fake-fake".equals(test));
         }
     }
 
-    public void checkSAXTransformer(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkSAXTransformer(Class<?> clazz, boolean fake) throws Exception {
         TransformerHandler transformerHandler = invokeMethod(clazz.newInstance(), "transformerHandler");
         TransformerFactory factory = invokeMethod(clazz.newInstance(), "transformerFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeTransformerFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__TransformerFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__TransformerFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeTransformerHandler.class.getName(), transformerHandler.getClass().getName());
         } else {
             Assert.assertSame(((SAXTransformerFactory) TransformerFactory.newInstance()).newTransformerHandler().getClass(), transformerHandler.getClass());
         }
     }
 
-    public void checkXmlEvent(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkXmlEvent(Class<?> clazz, boolean fake) throws Exception {
         DTD dtd = invokeMethod(clazz.newInstance(), "eventDTD");
         XMLEventFactory factory = invokeMethod(clazz.newInstance(), "eventFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeXMLEventFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__XMLEventFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__XMLEventFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(FakeDTD.class.getName(), dtd.getClass().getName());
         } else {
             Assert.assertSame(XMLEventFactory.newInstance().createDTD("blah").getClass(), dtd.getClass());
         }
     }
 
-    public void checkXmlInput(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkXmlInput(Class<?> clazz, boolean fake) throws Exception {
         String property = invokeMethod(clazz.newInstance(), "inputProperty");
         XMLInputFactory factory = invokeMethod(clazz.newInstance(), "inputFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeXMLInputFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__XMLInputFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__XMLInputFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(new FakeXMLInputFactory().getProperty("blah"), property);
         } else {
-            Assert.assertNotEquals(new FakeXMLInputFactory().getProperty("blah"), property);
+            Assert.assertFalse(new FakeXMLInputFactory().getProperty("blah").equals(property));
         }
     }
 
-    public void checkXmlOutput(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkXmlOutput(Class<?> clazz, boolean fake) throws Exception {
         String property = invokeMethod(clazz.newInstance(), "outputProperty");
         XMLOutputFactory factory = invokeMethod(clazz.newInstance(), "outputFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeXMLOutputFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__XMLOutputFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__XMLOutputFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(new FakeXMLOutputFactory().getProperty("blah"), property);
         } else {
-            Assert.assertNotEquals(new FakeXMLInputFactory().getProperty("blah"), property);
+            Assert.assertFalse(new FakeXMLInputFactory().getProperty("blah").equals(property));
         }
     }
 
-    public void checkDatatype(Class<?> clazz, boolean fakeFactory, boolean fakeImpl) throws Exception {
+    public void checkDatatype(Class<?> clazz, boolean fake) throws Exception {
         Duration duration = invokeMethod(clazz.newInstance(), "duration");
         DatatypeFactory factory = invokeMethod(clazz.newInstance(), "datatypeFactory");
 
-        if (fakeFactory) {
-            Assert.assertEquals(FakeDatatypeFactory.class.getName(), factory.getClass().getName());
-        } else {
-            Assert.assertEquals(__DatatypeFactory.class.getName(), factory.getClass().getName());
-        }
-        if (fakeImpl) {
+        Assert.assertEquals(__DatatypeFactory.class.getName(), factory.getClass().getName());
+
+        if (fake) {
             Assert.assertEquals(new FakeDuration().getSign(), duration.getSign());
         } else {
-            Assert.assertNotEquals(new FakeDuration().getSign(), duration.getSign());
+            Assert.assertFalse(new FakeDuration().getSign() == duration.getSign());
         }
     }
 

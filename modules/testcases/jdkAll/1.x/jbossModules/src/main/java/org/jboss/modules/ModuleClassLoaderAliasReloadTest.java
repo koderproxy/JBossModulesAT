@@ -12,7 +12,7 @@ import org.jboss.modules.util.TestResourceLoader;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0")
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Verifies the functionality of alias modules in unload/reload scenarios.
  *
@@ -33,6 +33,12 @@ public class ModuleClassLoaderAliasReloadTest extends AbstractModuleTestCase {
 
         private CloseAwareResourceLoader(final ResourceLoader delegate) {
             this.delegate = delegate;
+        }
+
+        @Override
+        public String getRootName() {
+            if (closed) throw new IllegalStateException();
+            return delegate.getRootName();
         }
 
         @Override
@@ -80,9 +86,7 @@ public class ModuleClassLoaderAliasReloadTest extends AbstractModuleTestCase {
                                 .addResources(getResource("test/aliasmodule/rootOne"))
                                 .create())
         ));
-        moduleOneBuilder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_TWO_AL.toString())
-            .build());
+        moduleOneBuilder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_TWO_AL));
         moduleOneBuilder.addDependency(DependencySpec.createLocalDependencySpec());
         moduleLoader.addModuleSpec(moduleOneBuilder.create());
         // second module
@@ -95,9 +99,7 @@ public class ModuleClassLoaderAliasReloadTest extends AbstractModuleTestCase {
                                 .create()
                 )
         ));
-        moduleTwoBuilder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_ONE_ID.toString())
-            .build());
+        moduleTwoBuilder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_ONE_ID));
         moduleTwoBuilder.addDependency(DependencySpec.createLocalDependencySpec());
         moduleLoader.addModuleSpec(moduleTwoBuilder.create());
         // second alias module

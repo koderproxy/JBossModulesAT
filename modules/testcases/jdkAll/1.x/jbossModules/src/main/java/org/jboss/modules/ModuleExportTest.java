@@ -32,12 +32,10 @@ import org.jboss.modules.filter.PathFilters;
 import org.jboss.modules.test.ImportedClass;
 import org.jboss.modules.util.TestModuleLoader;
 import org.jboss.modules.util.TestResourceLoader;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.jboss.eap.additional.testsuite.annotations.EapAdditionalTestsuite;
 
-@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.8.0") 
-
+@EapAdditionalTestsuite("modules/testcases/jdkAll/1.x/jbossModules/src/main/java#1.6.0*1.6.9") 
 /**
  * Test to verify the module export dependencies and imports are created correctly.  Each module should have an entry
  * directly to the module that has an exported path.
@@ -56,20 +54,12 @@ public class ModuleExportTest extends AbstractModuleTestCase {
         final TestModuleLoader moduleLoader = new TestModuleLoader();
 
         ModuleSpec.Builder builder = ModuleSpec.build(MODULE_A);
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_B.toString())
-            .setExport(true)
-            .build());
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_B, true, false));
         moduleLoader.addModuleSpec(builder.create());
 
         builder = ModuleSpec.build(MODULE_B);
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_C.toString())
-            .setExport(true)
-            .build());
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_D.toString())
-            .build());
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_C, true, false));
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_D));
         moduleLoader.addModuleSpec(builder.create());
 
         builder = ModuleSpec.build(MODULE_C);
@@ -123,25 +113,16 @@ public class ModuleExportTest extends AbstractModuleTestCase {
 
     @SuppressWarnings({ "unchecked" })
     @Test
-    @Ignore("Disabled; relies on modules not inheriting full set of JDK paths which is incorrect behavior")
     public void testImportPaths() throws Exception {
         final TestModuleLoader moduleLoader = new TestModuleLoader();
 
         ModuleSpec.Builder builder = ModuleSpec.build(MODULE_A);
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_B.toString())
-            .setExport(true)
-            .build());
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_B, true));
         moduleLoader.addModuleSpec(builder.create());
 
         builder = ModuleSpec.build(MODULE_B);
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_C.toString())
-            .setExport(true)
-            .build());
-        builder.addDependency(new ModuleDependencySpecBuilder()
-            .setName(MODULE_D.toString())
-            .build());
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_C, true));
+        builder.addDependency(DependencySpec.createModuleDependencySpec(MODULE_D));
         moduleLoader.addModuleSpec(builder.create());
 
         builder = ModuleSpec.build(MODULE_C);

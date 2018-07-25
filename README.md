@@ -26,12 +26,15 @@ e.g.
        - Run JBModulesAT using the command >>> mvn clean install -D1.x -Djboss.modules.system.pkgs=javax.naming -s "./example-setting.xml" 
         
      
-   
+     For 1.6
+       - Download jboss-modules sources from https://github.com/jboss-modules/jboss-modules/tree/1.6
+       - Build the jboss-module sources with the command mvn clean install -DskipTests -s "./example-setting.xml"
+       - Set JBOSS_VERSION env variable to the version of the current 1.6 branch (e.g 1.6.5.Final-SNAPSHOT)
+       - Run JBModulesAT using the command >>> mvn clean install -D1.x -Djboss.modules.system.pkgs=javax.activation -s "./example-setting.xml" 
+        
+      
 
- when testing the sources of jboss-modules before 1.8.0 version we should add -Djboss.modules.system.pkgs=javax.naming
-
-  e.g. mvn clean install -D1.x -Djboss.modules.system.pkgs=javax.naming
-
+ 
 
 ## License
 
