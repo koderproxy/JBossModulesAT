@@ -2,9 +2,9 @@ This is the JBossModulesAT(JBoss GSoC 2018) project.
 
 JBossModulesAT is an implementation of the AT Structures for the JBoss-Modules testsuite.
 
-in order to describe how you run JBModulesAT with the different versions of jboss-modules
+Below there is the description of the way to run JBModulesAT with the different versions of jboss-modules :
 
-e.g.
+NOTE : When using example-settings.xml , the maven local repo is created under /opt directory. In case you have no permissions to do so (create directories under /opt), please execute the following procedure with admin/root privileges.
  
      For 1.x
        -Download jboss-modules sources from https://github.com/jboss-modules/jboss-modules/tree/1.x
